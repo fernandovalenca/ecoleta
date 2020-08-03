@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
 import knex from '../database/connection';
-import convertStringToArray from '../utils/ConvertStringToArray';
+import { convertStringToArray } from '../utils/ConvertStringToArray';
 
 class PointsController {
     async index(request: Request, response: Response) {
         const { city, uf, items } = request.query;
+        const parsedItems = convertStringToArray(String(items));
+
+        console.log({ city, uf, items }, parsedItems);
 
         try {
-            const parsedItems = convertStringToArray(String(items));
-
             const points = await knex('points')
                 .join('point_items', 'points.id', '=', 'point_items.point_id')
                 .whereIn('point_items.item_id', parsedItems)
@@ -20,7 +21,7 @@ class PointsController {
             const serializedPoints = points.map(point => {
                 return {
                     ...points,
-                    image_url: `http://localhost:3333/uploads/uploads/${point.image}`,
+                    image_url: `http://localhost:3333/images/uploads/${point.image}`,
                 };
             });
             return response.json(serializedPoints);
@@ -39,7 +40,7 @@ class PointsController {
 
         const serializedPoint = {
             ...point,
-            image_url: `http://localhost:3333/uploads/uploads/${point.image}`,
+            image_url: `http://localhost:3333/images/uploads/${point.image}`,
         };
 
         const items = await knex('items')

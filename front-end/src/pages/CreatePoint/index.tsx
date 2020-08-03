@@ -207,7 +207,7 @@ const CreatePoint = () => {
                                 <select id="uf" name="uf" value={selectedUf} onChange={handleSelectUf} >
                                     <option>Selecione um estado</option>
                                     {ufs.map(uf => (
-                                        <option key={uf.id} value={uf.id}>{uf.sigla}</option>
+                                        <option key={uf.id} value={uf.sigla} >{uf.sigla}</option>
                                     ))}
                                 </select>
                             </div>
@@ -216,7 +216,7 @@ const CreatePoint = () => {
                                 <select id="city" name="city" value={selectedCity} onChange={handleSelectCity}>
                                     <option value="0">Selecione uma cidade</option>
                                     {cities.map(city => (
-                                        <option key={city.id} value={city.id}>{city.nome}</option>
+                                        <option key={city.id} value={city.nome}>{city.nome}</option>
                                     ))}
                                 </select>
                             </div>
