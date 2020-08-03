@@ -174,16 +174,16 @@ const CreatePoint = () => {
                         </legend>
                         <div className="field">
                             <label htmlFor="name">Nome da entidade</label>
-                            <input type="text" name="name" id="name" onChange={handleInputChange} />
+                            <input type="text" name="name" id="name" onChange={handleInputChange} required />
                         </div>
                         <div className="field-group">
                             <div className="field">
                                 <label htmlFor="email">E-mail</label>
-                                <input type="email" name="email" id="email" onChange={handleInputChange} />
+                                <input type="email" name="email" id="email" onChange={handleInputChange} required />
                             </div>
                             <div className="field">
                                 <label htmlFor="whatsapp">Whatsapp</label>
-                                <input type="text" name="whatsapp" id="whatsapp" onChange={handleInputChange} />
+                                <input type="text" name="whatsapp" id="whatsapp" onChange={handleInputChange} required />
                             </div>
                         </div>
                     </fieldset>
@@ -204,7 +204,7 @@ const CreatePoint = () => {
                         <div className="field-group">
                             <div className="field">
                                 <label htmlFor="uf">Estado (UF)</label>
-                                <select id="uf" name="uf" value={selectedUf} onChange={handleSelectUf} required>
+                                <select id="uf" name="uf" value={selectedUf} onChange={handleSelectUf} >
                                     <option>Selecione um estado</option>
                                     {ufs.map(uf => (
                                         <option key={uf.id} value={uf.id}>{uf.sigla}</option>
@@ -247,4 +247,4 @@ const CreatePoint = () => {
     );
 };
 
-export default CreatePoint;
+export { CreatePoint };
