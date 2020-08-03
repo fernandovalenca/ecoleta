@@ -11,7 +11,7 @@ class ItemsController {
                 return {
                     id: item.id,
                     title: item.title,
-                    image_url: `http://localhost:3333/uploads/${item.image}`,
+                    image_url: `http://localhost:3333/src/repositories/${item.image}`,
                 };
             });
 
@@ -23,4 +23,4 @@ class ItemsController {
     };
 };
 
-export default ItemsController;
+export { ItemsController };
