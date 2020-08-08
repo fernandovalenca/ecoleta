@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import knex from '../database/connection';
-import { convertStringToArray } from '../utils/ConvertStringToArray';
+import { connection as Knex } from '../database/connection';
+import { convertStringToArray } from '../utils/convertStringToArray';
+import { serializePointImage } from '../utils/serializeImage';
 
 class PointsController {
     async index(request: Request, response: Response) {
@@ -10,7 +11,7 @@ class PointsController {
         console.log({ city, uf, items }, parsedItems);
 
         try {
-            const points = await knex('points')
+            const points = await Knex('points')
                 .join('point_items', 'points.id', '=', 'point_items.point_id')
                 .whereIn('point_items.item_id', parsedItems)
                 .where('city', String(city))
@@ -21,7 +22,7 @@ class PointsController {
             const serializedPoints = points.map(point => {
                 return {
                     ...points,
-                    image_url: `http://localhost:3333/images/uploads/${point.image}`,
+                    image_url: serializePointImage(String(point.image)),
                 };
             });
             return response.json(serializedPoints);
@@ -32,7 +33,7 @@ class PointsController {
     async show(request: Request, response: Response) {
         const { id } = request.params;
 
-        const point = await knex('points').where('id', id).first();
+        const point = await Knex('points').where('id', id).first();
 
         if (!point) {
             return response.status(400).json({ message: 'Point not Fonund!' })
@@ -40,10 +41,10 @@ class PointsController {
 
         const serializedPoint = {
             ...point,
-            image_url: `http://localhost:3333/images/uploads/${point.image}`,
+            image_url: serializePointImage(String(point.image)),
         };
 
-        const items = await knex('items')
+        const items = await Knex('items')
             .join('point_items', 'items.id', '=', 'point_items.item_id')
             .where('point_items.point_id', id)
             .select('items.title');
@@ -55,7 +56,7 @@ class PointsController {
         const point = { image: request.file.filename, name, email, whatsapp, latitude, longitude, city, uf };
 
         try {
-            const trx = await knex.transaction();
+            const trx = await Knex.transaction();
 
             const [point_id] = await trx('points').insert(point);
 
