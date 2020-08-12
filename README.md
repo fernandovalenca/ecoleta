@@ -162,7 +162,7 @@ $ npm run start
 
 Este projeto esta sobe a licença MIT.
 
-Feito com ❤️ por Fernando Valença 👋🏽 [Entre em contato!](https://www.linkedin.com/in/tgmarinho/)
+Feito com ❤️ por Fernando Valença 👋🏽 [Entre em contato!](https://www.linkedin.com/in/fernando-orestes-dos-santos-valen%C3%A7a-836508186/)
 
 [nodejs]: https://nodejs.org/
 [typescript]: https://www.typescriptlang.org/
