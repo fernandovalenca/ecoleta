@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { connection as Knex } from '../database/connection';
-import { convertStringToArray } from '../utils/convertStringToArray';
+import { convertStringToArray } from '../utils/ConvertStringToArray';
 import { serializePointImage } from '../utils/serializeImage';
 
 class PointsController {
