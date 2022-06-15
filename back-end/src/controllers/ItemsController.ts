@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { connection as Knex } from "database/connection";
-import { serializeItemImage } from "utils/serializeImage";
+import { connection as Knex } from "../database/connection";
+import { serializeItemImage } from "../utils/serializeImage";
 
 class ItemsController {
   async index(request: Request, response: Response) {
