@@ -1,16 +1,16 @@
-import knex from 'knex';
-import path from 'path';
+import knex from "knex";
+import path from "path";
 
 const connection = knex({
-    client: 'sqlite3',
-    connection: {
-        filename: path.resolve(__dirname, 'database.sqlite'),
-    },
-    pool: {
-        max: 50,
-        min: 2,
-    },
-    useNullAsDefault: true,
+  client: "sqlite3",
+  connection: {
+    filename: path.resolve(__dirname, "database.sqlite"),
+  },
+  pool: {
+    max: 50,
+    min: 2,
+  },
+  useNullAsDefault: true,
 });
 
 export { connection };
